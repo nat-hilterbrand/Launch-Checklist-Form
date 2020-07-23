@@ -1,15 +1,16 @@
 window.addEventListener("load", function(){
    let form = document.querySelector("form");
    form.addEventListener("submit", function (){
+      // event.preventDefault();
       let pilotNameInput = document.querySelector("input[name=pilotName]");
       let copilotNameInput = document.querySelector("input[name=copilotName]");
       let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
       let cargoMassInput = document.querySelector("input[name=cargoMass]");
-      let faultyItems = document.getElementById(faultyItems);
-      let fuelStatus = document.getElementById(fuelStatus);
-      let launchStatus = document.getElementById(launchStatus);
-      let cargoStatus = document.getElementById(cargoStatus);
-      let launchStatusCheck = document.getElementById(launchStatusCheck);
+      let faultyItems = document.getElementById("faultyItems");
+      let fuelStatus = document.getElementById("fuelStatus");
+      let launchStatus = document.getElementById("launchStatus");
+      let cargoStatus = document.getElementById("cargoStatus");
+      let launchStatusCheck = document.getElementById("launchStatusCheck");
 
       if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
          alert("All fields are required!");
