@@ -14,7 +14,7 @@ window.addEventListener("load", function(){
       if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
          alert("All fields are required!");
          event.preventDefault();
-      }; //all fields required check close
+      };//all fields required check close
       if (isNaN(pilotNameInput.value) === false){
          alert("Enter valid pilots name.");
       };
@@ -28,25 +28,25 @@ window.addEventListener("load", function(){
          alert("Enter a valid cargo input.");
       };
       // template literals for pilotStatus and copilotStatus
-      document.getElementById(pilotStatus).innerHTML = `${pilotNameInput} Ready`;
-      document.getElementById(copilotStatus).innerHTML = `${copilotNameInput} Ready`;
+      document.getElementById(pilotStatus).innerHTML = `${pilotNameInput.value} Ready`;
+      document.getElementById(copilotStatus).innerHTML = `${copilotNameInput.value} Ready`;
 
-      if(fuelLevelInput =< 10,000){
+      if(fuelLevelInput <= 10000){
          faultyItems.style.visibility = "visible";
          fuelStatus.innerHTML = "Not enough fuel for the journey.";
          launchStatus.innerHTML = "Shuttle not ready for launch";
-         launchStatusCheck.style.color = "red";
-      else if(cargoMassInput> 10,000){
+         launchStatusCheck.style.color = red;
+      } else if(cargoMassInput > 10000){
          faultyItems.style.visibility = "visible";
          cargoStatus.innerHTML = "Not enough fuel for the journey.";
          launchStatus.innerHTML = "Shuttle not ready for launch";
-         launchStatusCheck.style.color = "red";
+         launchStatusCheck.style.color = red;
       } else {
          launchStatus.innerHTML = "Shuttle is ready for launch";
-         launchStatusCheck.style.color = "green";
+         launchStatusCheck.style.color = green;
       };
-
    });//submit event close
+   event.preventDefault();
 }); //window load  event close
 
 /* This block of code shows how to format the HTML once you fetch some planetary JSON!
