@@ -70,6 +70,7 @@ window.addEventListener("load", function(){
       } else {
          launchStatus.innerHTML = "Shuttle is ready for launch";
          launchStatus.style.color = "green";
+         faultyItems.style.visibility = "visible";
       };
    });//submit event close
    event.preventDefault();
