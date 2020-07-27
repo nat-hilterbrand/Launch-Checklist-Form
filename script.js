@@ -1,11 +1,33 @@
 window.addEventListener("load", function(){
+   fetch("https://handlers.education.launchcode.org/static/planets.json").then(function(response){
+   response.json().then(function(json){
+      let missionTarget = document.getElementById("missionTarget");
+      missionTarget.innerHTML = `
+      <h2>Mission Destination</h2>
+      <ol>
+         <li>Name: ${json[0].name}</li>
+         <li>Diameter: ${json[0].diameter}</li>
+         <li>Star: ${json[0].star}</li>
+         <li>Distance from Earth: ${json[0].distance}</li>
+         <li>Number of Moons: ${json[0].moons}</li>
+      </ol>
+      <img src="${json[0].image}"></img>
+      `;
+   });
+   });
+
+
+
    let form = document.querySelector("form");
    form.addEventListener("submit", function (){
-      // event.preventDefault();
+      event.preventDefault();
       let pilotNameInput = document.querySelector("input[name=pilotName]");
       let copilotNameInput = document.querySelector("input[name=copilotName]");
       let fuelLevelInput = document.querySelector("input[name=fuelLevel]");
       let cargoMassInput = document.querySelector("input[name=cargoMass]");
+      let pilotStatus = document.getElementById("pilotStatus");
+      let copilotStatus = document.getElementById("copilotStatus");
+
       let faultyItems = document.getElementById("faultyItems");
       let fuelStatus = document.getElementById("fuelStatus");
       let launchStatus = document.getElementById("launchStatus");
@@ -15,49 +37,43 @@ window.addEventListener("load", function(){
       if (pilotNameInput.value === "" || copilotNameInput.value === "" || fuelLevelInput.value === "" || cargoMassInput.value === "") {
          alert("All fields are required!");
          event.preventDefault();
-      };//all fields required check close
-      if (isNaN(pilotNameInput.value) === false){
+      }//all fields required check close
+      else if (isNaN(pilotNameInput.value) === false){
          alert("Enter valid pilots name.");
-      };
-      if (isNaN(copilotNameInput.value) === false){
+      }
+       else if (isNaN(copilotNameInput.value) === false){
          alert("Enter valid copilots name.");
-      };
-      if (isNaN(fuelLevelInput.value) === true){
+      }
+       else if (isNaN(fuelLevelInput.value)){
          alert("Enter a valid fuel input.");
-      };
-      if (isNaN(cargoMassInput.value) === true){
+      }
+      else if (isNaN(cargoMassInput.value)){
          alert("Enter a valid cargo input.");
-      };
+      }
+      else {
       // template literals for pilotStatus and copilotStatus
-      document.getElementById(pilotStatus).innerHTML = `${pilotNameInput.value} Ready`;
-      document.getElementById(copilotStatus).innerHTML = `${copilotNameInput.value} Ready`;
+      pilotStatus.innerHTML = `${pilotNameInput.value} Ready`;
+      copilotStatus.innerHTML = `${copilotNameInput.value} Ready`;
+      };
 
-      if(fuelLevelInput <= 10000){
+      if(fuelLevelInput.value <= 10000){
          faultyItems.style.visibility = "visible";
          fuelStatus.innerHTML = "Not enough fuel for the journey.";
          launchStatus.innerHTML = "Shuttle not ready for launch";
-         launchStatusCheck.style.color = red;
-      } else if(cargoMassInput > 10000){
+         launchStatus.style.color = "red";
+      }
+      else if(cargoMassInput.value > 10000){
          faultyItems.style.visibility = "visible";
-         cargoStatus.innerHTML = "Not enough fuel for the journey.";
+         cargoStatus.innerHTML = "Too much mass for take off.";
          launchStatus.innerHTML = "Shuttle not ready for launch";
-         launchStatusCheck.style.color = red;
+         launchStatus.style.color = "red";
       } else {
          launchStatus.innerHTML = "Shuttle is ready for launch";
-         launchStatusCheck.style.color = green;
+         launchStatus.style.color = "green";
       };
    });//submit event close
    event.preventDefault();
+
 }); //window load  event close
 
-/* This block of code shows how to format the HTML once you fetch some planetary JSON!
-<h2>Mission Destination</h2>
-<ol>
-   <li>Name: ${}</li>
-   <li>Diameter: ${}</li>
-   <li>Star: ${}</li>
-   <li>Distance from Earth: ${}</li>
-   <li>Number of Moons: ${}</li>
-</ol>
-<img src="${}">
-*/
+
